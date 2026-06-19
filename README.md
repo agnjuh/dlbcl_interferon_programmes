@@ -2,15 +2,15 @@
 
 Transcriptomic analysis of PYHIN-family gene expression and interferon-associated transcriptional programmes in primary diffuse large B-cell lymphoma.
 
-This project investigates the expression of interferon-stimulated genes and proteins belonging to the PYHIN family in diffuse large B-cell lymphoma (DLBCL). Particular attention was given to the relationship between MNDA, IFI16, AIM2, PYHIN1 and broader interferon-associated transcriptional programmes.
+This project investigates the expression of interferon-stimulated genes and proteins belonging to the PYHIN family in diffuse large B-cell lymphoma (DLBCL). Particular attention was given to the relationship between *MNDA*, *IFI16*, *AIM2*, *PYHIN1* and broader interferon-associated transcriptional programmes.
 
 ## Key findings
 
 1. MNDA expression was significantly higher in ABC-DLBCL than in GCB-DLBCL (P = 7.84 × 10⁻⁴).
 
-2. IFI16, MNDA, AIM2 and PYHIN1 expression positively correlated with global interferon programme activity.
+2. *IFI16*, *MNDA*, *AIM2* and *PYHIN1* expression positively correlated with global interferon programme activity.
 
-3. MNDA-high tumours exhibited coordinated upregulation of canonical interferon-stimulated genes including STAT1, OAS1–3, IFIT1–3, DDX58 and CXCL11.
+3. MNDA-high tumours exhibited coordinated upregulation of canonical interferon-stimulated genes including *STAT1*, *OAS1–3*, *IFIT1–3*, *DDX58* and *CXCL11*.
 
 4. A curated PYHIN/interferon gene set was significantly enriched among genes upregulated in MNDA-high tumours (odds ratio = 7.67, P = 5.9 × 10⁻⁵).
 
@@ -39,35 +39,9 @@ Raw gene-level count tables were downloaded from the Gene Expression Omnibus (GE
 
 ## Study aims
 
-The project focused on interferon-stimulated genes and PYHIN-family members implicated in innate immune signalling and interferon responses:
+The project focused on interferon-stimulated genes and PYHIN-family members implicated in innate immune signalling and interferon responses: *MNDA, IFI16, AIM2, PYHIN1*.
 
-- MNDA
-- IFI16
-- AIM2
-- PYHIN1
-
-Additional analyses examined canonical interferon-stimulated genes including:
-
-- ISG15
-- IFI6
-- IFI27
-- IFI44
-- IFI44L
-- IFIT1
-- IFIT2
-- IFIT3
-- MX1
-- MX2
-- OAS1
-- OAS2
-- OAS3
-- STAT1
-- STAT2
-- IRF7
-- IRF9
-- DDX58
-- RSAD2
-- CXCL11
+Additional analyses examined canonical interferon-stimulated genes including: *ISG15, IFI6, IFI27, IFI44, IFI44L, IFIT1, IFIT2, IFIT3, MX1, MX2, OAS1, OAS2, OAS3, STAT1, STAT2, IRF7, IRF9, DDX58, RSAD2, CXCL11*.
 
 ---
 
@@ -184,7 +158,7 @@ The MNDA-high subgroup demonstrated coordinated upregulation of PYHIN-family gen
 
 ---
 
-## Interferon-associated transcriptional programme in MNDA-high tumours
+## Interferon-associated transcriptional programme in *MNDA*-high tumours
 
 Differentially expressed PYHIN-family and interferon-associated genes showed coordinated activation in MNDA-high tumours.
 
@@ -194,7 +168,7 @@ Differentially expressed PYHIN-family and interferon-associated genes showed coo
 
 ## Enrichment analysis
 
-A curated PYHIN/interferon-associated gene set containing 24 genes was evaluated for enrichment among genes upregulated in MNDA-high tumours.
+A curated PYHIN/interferon-associated gene set containing 24 genes was evaluated for enrichment among genes upregulated in *MNDA*-high tumours.
 
 | Metric | Value |
 |----------|----------|
@@ -207,29 +181,7 @@ A curated PYHIN/interferon-associated gene set containing 24 genes was evaluated
 
 The analysis demonstrated significant enrichment of interferon-associated genes among transcripts elevated in MNDA-high DLBCL.
 
-Overlap genes:
-
-- AIM2
-- CXCL11
-- DDX58
-- IFI16
-- IFI27
-- IFI44
-- IFI44L
-- IFIT1
-- IFIT2
-- IFIT3
-- IRF9
-- MNDA
-- MX1
-- MX2
-- OAS1
-- OAS2
-- OAS3
-- PYHIN1
-- RSAD2
-- STAT1
-- STAT2
+Overlap genes: *AIM2, CXCL11, DDX58, IFI16, IFI27, IFI44, IFI44L, IFIT1, IFIT2, IFIT3, IRF9, MNDA, MX1, MX2, OAS1, OAS2, OAS3, PYHIN1, RSAD2, STAT1, STAT2*.
 
 ---
 
