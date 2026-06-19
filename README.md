@@ -1,8 +1,8 @@
 # Interferon-stimulated PYHIN proteins in diffuse large B-cell lymphoma (DLBCL)
 
-Transcriptomic analysis of interferon-associated programmes, PYHIN-family gene expression and MNDA-linked interferon activation in primary DLBCL tumours.
+Transcriptomic analysis of PYHIN-family gene expression and interferon-associated transcriptional programmes in primary diffuse large B-cell lymphoma.
 
-This project investigates the expression of interferon-stimulated genes and proteins belonging to the PYHIN family in diffuse large B-cell lymphoma (DLBCL). The analysis was motivated by recent evidence suggesting that interferon-associated programmes may influence disease biology, treatment response, and clinical outcome in DLBCL.
+This project investigates the expression of interferon-stimulated genes and proteins belonging to the PYHIN family in diffuse large B-cell lymphoma (DLBCL). Particular attention was given to the relationship between MNDA, IFI16, AIM2, PYHIN1 and broader interferon-associated transcriptional programmes.
 
 ## Key findings
 
@@ -14,7 +14,7 @@ This project investigates the expression of interferon-stimulated genes and prot
 
 4. A curated PYHIN/interferon gene set was significantly enriched among genes upregulated in MNDA-high tumours (odds ratio = 7.67, P = 5.9 × 10⁻⁵).
 
-5. Results support the existence of an interferon-associated transcriptional state linked to PYHIN-family gene expression in primary DLBCL.
+5. Results identify an interferon-associated transcriptional state characterised by coordinated activation of PYHIN-family and interferon-stimulated genes in primary DLBCL.
 
 ---
 
@@ -90,7 +90,7 @@ The workflow includes:
 - subgroup comparisons
 - correlation analyses
 - differential expression testing
-- enrichment analysis
+- Fisher exact enrichment analysis
 - figure generation
 
 ---
@@ -237,7 +237,7 @@ Overlap genes:
 
 ```text
 workflow/
-├── Snakefile
+└── Snakefile
 
 scripts/
 ├── prepare_count_matrix.py
@@ -287,7 +287,9 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE147986
 
 If you use this repository, please cite:
 
-Juhász, Á. (2026). *Interferon-stimulated PYHIN proteins in diffuse large B-cell lymphoma (DLBCL): transcriptomic analysis of interferon-associated programmes in primary DLBCL*. GitHub repository. Available at: https://github.com/agnjuh/dlbcl_interferon_programmes
+Juhász, Á. (2026). *Interferon-stimulated PYHIN proteins in diffuse large B-cell lymphoma (DLBCL): transcriptomic analysis of interferon-associated programmes in primary DLBCL*. GitHub repository. Available at:
+
+https://github.com/agnjuh/dlbcl_interferon_programmes
 
 This analysis is based on RNA-sequencing data from GEO accession GSE147986. Please also cite the original study associated with the dataset:
 
