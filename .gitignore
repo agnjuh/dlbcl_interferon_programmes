@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+.snakemake/
+.snakejob*
+
+data/raw/
+*.tar
+*.tar.gz
+*.gz
+
+results/expression/gse147986_count_matrix.tsv
+results/normalised_expression/gse147986_cpm.tsv
+results/normalised_expression/gse147986_log_cpm.tsv

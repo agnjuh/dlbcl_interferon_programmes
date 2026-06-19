@@ -1,0 +1,162 @@
+rule all:
+    input:
+        "results/expression/gse147986_count_matrix.tsv",
+        "metadata/gse147986_samples.tsv",
+        "metadata/gse147986_coo_metadata.tsv",
+        "results/normalised_expression/gse147986_cpm.tsv",
+        "results/normalised_expression/gse147986_log_cpm.tsv",
+        "results/normalised_expression/pyhin_log_cpm_by_sample.tsv",
+        "results/normalised_expression/pyhin_abc_vs_gcb_mannwhitney.tsv",
+        "results/normalised_expression/isg_scores.tsv",
+        "results/normalised_expression/isg_score_group_summary.tsv",
+        "results/normalised_expression/isg_score_abc_vs_gcb_mannwhitney.tsv",
+        "results/normalised_expression/pyhin_isg_score_correlations.tsv",
+        "results/normalised_expression/mnda_groups.tsv",
+        "results/normalised_expression/mnda_high_vs_low_de.tsv",
+        "results/normalised_expression/mnda_high_vs_low_pyhin_interferon_hits.tsv",
+        "results/enrichment/mnda_high_interferon_gene_enrichment.tsv",
+        "results/enrichment/mnda_high_interferon_gene_overlap.tsv",
+        "figures/pyhin/IFI16_expression_by_coo.png",
+        "figures/pyhin/AIM2_expression_by_coo.png",
+        "figures/pyhin/MNDA_expression_by_coo.png",
+        "figures/pyhin/PYHIN1_expression_by_coo.png",
+        "figures/interferon_scores/IFI16_isg_score_correlation.png",
+        "figures/interferon_scores/AIM2_isg_score_correlation.png",
+        "figures/interferon_scores/MNDA_isg_score_correlation.png",
+        "figures/interferon_scores/PYHIN1_isg_score_correlation.png",
+        "figures/interferon_heatmap/mnda_high_low_pyhin_interferon_heatmap.png",
+        "figures/differential_expression/mnda_high_vs_low_volcano.png"
+
+rule prepare_count_matrix:
+    input:
+        raw_dir=directory("data/raw")
+    output:
+        counts="results/expression/gse147986_count_matrix.tsv",
+        samples="metadata/gse147986_samples.tsv"
+    shell:
+        "python scripts/prepare_count_matrix.py"
+
+rule prepare_metadata:
+    input:
+        "data/metadata/GSE147986_series_matrix.txt.gz"
+    output:
+        "metadata/gse147986_coo_metadata.tsv"
+    shell:
+        "python scripts/prepare_metadata.py"
+
+rule normalise_counts:
+    input:
+        "results/expression/gse147986_count_matrix.tsv"
+    output:
+        cpm="results/normalised_expression/gse147986_cpm.tsv",
+        log_cpm="results/normalised_expression/gse147986_log_cpm.tsv"
+    shell:
+        "python scripts/normalise_counts.py"
+
+rule analyse_pyhin_expression:
+    input:
+        expr="results/normalised_expression/gse147986_log_cpm.tsv",
+        meta="metadata/gse147986_coo_metadata.tsv"
+    output:
+        by_sample="results/normalised_expression/pyhin_log_cpm_by_sample.tsv",
+        stats="results/normalised_expression/pyhin_abc_vs_gcb_mannwhitney.tsv"
+    shell:
+        "python scripts/analyse_pyhin_expression.py"
+
+rule plot_pyhin_expression:
+    input:
+        "results/normalised_expression/pyhin_log_cpm_by_sample.tsv"
+    output:
+        "figures/pyhin/IFI16_expression_by_coo.png",
+        "figures/pyhin/AIM2_expression_by_coo.png",
+        "figures/pyhin/MNDA_expression_by_coo.png",
+        "figures/pyhin/PYHIN1_expression_by_coo.png"
+    shell:
+        "python scripts/plot_pyhin_expression.py"
+
+rule calculate_isg_score:
+    input:
+        expr="results/normalised_expression/gse147986_log_cpm.tsv",
+        genes="metadata/gene_sets/interferon_stimulated_genes.txt",
+        meta="metadata/gse147986_coo_metadata.tsv"
+    output:
+        "results/normalised_expression/isg_scores.tsv"
+    shell:
+        "python scripts/calculate_isg_score.py"
+
+rule analyse_isg_score:
+    input:
+        scores="results/normalised_expression/isg_scores.tsv",
+        pyhin="results/normalised_expression/pyhin_log_cpm_by_sample.tsv"
+    output:
+        "results/normalised_expression/isg_score_group_summary.tsv",
+        "results/normalised_expression/isg_score_abc_vs_gcb_mannwhitney.tsv",
+        "results/normalised_expression/pyhin_isg_score_correlations.tsv"
+    shell:
+        "python scripts/analyse_isg_score.py"
+
+rule plot_isg_pyhin_correlations:
+    input:
+        scores="results/normalised_expression/isg_scores.tsv",
+        pyhin="results/normalised_expression/pyhin_log_cpm_by_sample.tsv"
+    output:
+        "figures/interferon_scores/IFI16_isg_score_correlation.png",
+        "figures/interferon_scores/AIM2_isg_score_correlation.png",
+        "figures/interferon_scores/MNDA_isg_score_correlation.png",
+        "figures/interferon_scores/PYHIN1_isg_score_correlation.png"
+    shell:
+        "python scripts/plot_isg_pyhin_correlations.py"
+
+rule create_mnda_groups:
+    input:
+        "results/normalised_expression/gse147986_log_cpm.tsv"
+    output:
+        "results/normalised_expression/mnda_groups.tsv"
+    shell:
+        "python scripts/create_mnda_groups.py"
+
+rule mnda_differential_expression:
+    input:
+        expr="results/normalised_expression/gse147986_log_cpm.tsv",
+        groups="results/normalised_expression/mnda_groups.tsv"
+    output:
+        "results/normalised_expression/mnda_high_vs_low_de.tsv"
+    shell:
+        "python scripts/mnda_differential_expression.py"
+
+rule extract_target_interferon_de_hits:
+    input:
+        de="results/normalised_expression/mnda_high_vs_low_de.tsv",
+        genes="metadata/gene_sets/pyhin_interferon_target_genes.txt"
+    output:
+        "results/normalised_expression/mnda_high_vs_low_pyhin_interferon_hits.tsv"
+    shell:
+        "python scripts/extract_target_interferon_de_hits.py"
+
+rule interferon_gene_enrichment:
+    input:
+        de="results/normalised_expression/mnda_high_vs_low_de.tsv",
+        genes="metadata/gene_sets/pyhin_interferon_target_genes.txt"
+    output:
+        "results/enrichment/mnda_high_interferon_gene_enrichment.tsv",
+        "results/enrichment/mnda_high_interferon_gene_overlap.tsv"
+    shell:
+        "python scripts/interferon_gene_enrichment.py"
+
+rule plot_mnda_interferon_heatmap:
+    input:
+        expr="results/normalised_expression/gse147986_log_cpm.tsv",
+        groups="results/normalised_expression/mnda_groups.tsv",
+        genes="metadata/gene_sets/pyhin_interferon_target_genes.txt"
+    output:
+        "figures/interferon_heatmap/mnda_high_low_pyhin_interferon_heatmap.png"
+    shell:
+        "python scripts/plot_mnda_interferon_heatmap.py"
+
+rule plot_mnda_volcano:
+    input:
+        "results/normalised_expression/mnda_high_vs_low_de.tsv"
+    output:
+        "figures/differential_expression/mnda_high_vs_low_volcano.png"
+    shell:
+        "python scripts/plot_mnda_volcano.py"

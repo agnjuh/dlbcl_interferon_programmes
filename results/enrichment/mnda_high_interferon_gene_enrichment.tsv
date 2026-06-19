@@ -1,0 +1,2 @@
+gene_set	background_genes	gene_set_size	significant_upregulated_genes	overlap	odds_ratio	p_value
+PYHIN_interferon_target_genes	33126	24	15811	21	7.674730842305257	5.863893259541093e-05
